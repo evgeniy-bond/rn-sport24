@@ -1,32 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+// import { StyleSheet, Text, View } from 'react-native';
+import RootStack from './screens';
 
-export default class App extends React.Component {
-  componentDidMount() {
-    this.getNews();
-  }
-  // async getNews() {
-  //   const resp = await fetch('https://sport24.ru/api/8news/news?feedLimit=17&newsLimit=50');
-  //   const data = await resp.json();
-  //   console.log(data);
-  // }
+export default class App extends Component {
+//   componentDidMount() {
+//     this.getNews();
+//   }
+//   // async getNews() {
+//   //   const resp = await fetch('https://sport24.ru/api/8news/news?feedLimit=17&newsLimit=50');
+//   //   const data = await resp.json();
+//   //   console.log(data);
+//   // }
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+    return <RootStack/>;
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
