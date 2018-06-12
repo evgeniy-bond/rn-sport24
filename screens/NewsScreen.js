@@ -9,20 +9,28 @@ export default class NewsScreen extends Component {
     title: 'Новости',
     tabBarIcon: ({ focused }) => <NavigationIcon name="news" focused={focused}/>
   };
-    //   componentDidMount() {
-//     this.getNews();
-//   }
-//   // async getNews() {
-//   //   const resp = await fetch('https://sport24.ru/api/8news/news/mainPage/news?limit=25&offset=35&tab=all');
-//   //   const data = await resp.json();
-//   //   console.log(data);
-//   // }
+  state = {
+    news: []
+  }
+
+  componentDidMount() {
+    this.getNews();
+  }
+
+  async getNews() {
+    const resp = await fetch('https://sport24.ru/api/8news/news?feedLimit=17&newsLimit=26');
+    const data = await resp.json();
+    
+    this.setState({
+      news: data.quickNews.all
+    })
+  }
 
 
   render() {
     return (
       <Page title="Новости">
-        <MainNews />
+        <MainNews news={this.state.news}/>
       </Page>
     );
   }
