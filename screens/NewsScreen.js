@@ -9,6 +9,7 @@ export default class NewsScreen extends Component {
     title: 'Новости',
     tabBarIcon: ({ focused }) => <NavigationIcon name="news" focused={focused}/>
   };
+  
   state = {
     news: []
   }
@@ -20,12 +21,11 @@ export default class NewsScreen extends Component {
   async getNews() {
     const resp = await fetch('https://sport24.ru/api/8news/news?feedLimit=17&newsLimit=26');
     const data = await resp.json();
-    
+
     this.setState({
       news: data.quickNews.all
     })
   }
-
 
   render() {
     return (

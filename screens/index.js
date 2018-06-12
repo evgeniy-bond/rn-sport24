@@ -13,7 +13,7 @@ export default createBottomTabNavigator({
     VideosScreen
   },
   {
-    initialRouteName: 'NewsScreen',
+    initialRouteName: 'ArticlesScreen',
     tabBarOptions: {
       activeTintColor: '#5050b4',
       inactiveTintColor: '#8f939a',
