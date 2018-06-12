@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import NavigationIcon from '../components/NavigationIcon';
+import Page from '../components/Page';
 
 export default class IndexScreen extends Component {
   static navigationOptions = {
@@ -9,9 +10,7 @@ export default class IndexScreen extends Component {
   };
   render() {
     return (
-      <View>
-        <Text>Главная</Text> 
-      </View> 
+      <Page title="Главная"/>
     );
   }
 }

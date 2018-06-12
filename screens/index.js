@@ -5,8 +5,7 @@ import MatchesScreen from './MatchesScreen';
 import VideosScreen from './VideoScreen';
 import { createBottomTabNavigator } from 'react-navigation';
 
-export default createBottomTabNavigator(
-  {
+export default createBottomTabNavigator({
     IndexScreen,
     ArticlesScreen,
     NewsScreen,
@@ -14,12 +13,10 @@ export default createBottomTabNavigator(
     VideosScreen
   },
   {
+    initialRouteName: 'NewsScreen',
     tabBarOptions: {
       activeTintColor: '#5050b4',
       inactiveTintColor: '#8f939a',
     }
-  },
-  {
-    initialRouteName: 'IndexScreen',
   }
 );
