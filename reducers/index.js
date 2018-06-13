@@ -2,6 +2,7 @@ import { REQUEST_ARTICLES, RECEIVE_ARTICLES, RECEIVE_ARTICLES_FAILURE } from '..
 import { combineReducers } from 'redux'
 
 const initialState = {
+  offset: 0,
   articles: [],
   isLoading: true
 }
@@ -16,7 +17,11 @@ const articles = (state = initialState, action) => {
     case RECEIVE_ARTICLES:
       return {
         ...state,
-        articles: action.articles,
+        articles: [
+          ...state.articles,
+          ...action.articles
+        ],
+        offset: state.offset + 10,
         isLoading: false
       }
     case RECEIVE_ARTICLES_FAILURE:

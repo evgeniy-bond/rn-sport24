@@ -9,7 +9,7 @@ import { getArticles } from '../actions';
 class ArticlesScreen extends Component {
   static navigationOptions = {
     title: 'Статьи',
-    tabBarIcon: ({ focused }) => <NavigationIcon name="articles" focused={focused}/>
+    tabBarIcon: ({ focused }) => <NavigationIcon name="articles" focused={focused} />
   };
 
   componentDidMount() {
@@ -18,11 +18,15 @@ class ArticlesScreen extends Component {
   }
 
   render() {
-    const { isLoading, articles } = this.props;
-    
+    const { isLoading, articles, dispatch } = this.props;
+
     return (
       <Page title="Статьи">
-        <Articles articles={articles} isLoading={isLoading}/>
+        <Articles
+          articles={articles}
+          isLoading={isLoading}
+          getArticles={() => dispatch(getArticles())}
+        />
       </Page>
     )
   }

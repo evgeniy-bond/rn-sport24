@@ -19,15 +19,14 @@ export function receiveArticlesFailure() {
   }
 }
 
-export function getArticles(feedLimit, newsLimit) {
-  return async dispatch => {
-
+export function getArticles() {
+  return async (dispatch, getState) => {
+    const offset = getState().articles.offset;
     dispatch(requestArticles());
 
     try {
-      const resp = await fetch('https://sport24.ru/api/8news/news?feedLimit=10&newsLimit=35');
-      const data = await resp.json();
-      const articles = data && data.feed && data.feed.all;
+      const resp = await fetch(`https://sport24.ru/api/8news/news/mainPage/feed?limit=10&offset=${offset}`);
+      const articles = await resp.json();
 
       dispatch(receiveArticles(articles));
 
