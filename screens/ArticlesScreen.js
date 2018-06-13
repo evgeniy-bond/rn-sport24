@@ -3,32 +3,36 @@ import { View, Text, Image } from 'react-native';
 import NavigationIcon from '../components/NavigationIcon';
 import Page from '../components/Page';
 import Articles from '../components/Articles';
+import { connect } from 'react-redux'
+import { getArticles } from '../actions';
 
-export default class ArticlesScreen extends Component {
+class ArticlesScreen extends Component {
   static navigationOptions = {
     title: 'Статьи',
     tabBarIcon: ({ focused }) => <NavigationIcon name="articles" focused={focused}/>
   };
-  
-  state = {
-    articles: []
-  }
 
   componentDidMount() {
-    this.getArticles();
-  }
-
-  async getArticles() {
-    const resp = await fetch('https://sport24.ru/api/8news/news?feedLimit=14&newsLimit=35');
-    const data = await resp.json();
-    this.setState({ articles: data.feed.all })
+    const { dispatch } = this.props;
+    dispatch(getArticles())
   }
 
   render() {
+    const { isLoading, articles } = this.props;
+    
     return (
       <Page title="Статьи">
-        <Articles articles={this.state.articles}/>
+        <Articles articles={articles} isLoading={isLoading}/>
       </Page>
     )
   }
 }
+
+const mapStatToProps = state => {
+  return {
+    articles: state.articles.articles,
+    isLoading: state.articles.isLoading
+  }
+}
+
+export default connect(mapStatToProps)(ArticlesScreen)

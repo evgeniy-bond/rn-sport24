@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import RootStack from './screens';
 import { Font } from 'expo';
+import { Provider } from 'react-redux'
+import configureStore from './store';
+
+const store = configureStore();
 
 export default class App extends Component {
   componentDidMount() {
@@ -10,6 +14,10 @@ export default class App extends Component {
     });
   }
   render() {
-    return <RootStack/>;
+    return (
+      <Provider store={store}>
+        <RootStack/>
+      </Provider>
+    );
   }
 }
