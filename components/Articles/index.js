@@ -8,11 +8,12 @@ export default class Articles extends Component {
     const { isLoading, getArticles } = this.props;
 
     return (
-      <ScrollView style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20, marginBottom: 60 }}>
+      <ScrollView style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20, marginBottom: 20 }}>
         {this.props.articles.map((el, i) => <ArticleItem key={i} {...el} />)}
         <Button
           title="Загрузить еще"
           onPress={getArticles}
+          style={{height: 40}}
         />
       </ScrollView>
     );
