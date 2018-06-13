@@ -3,6 +3,7 @@ export default {
     paddingTop: 10
   },
   header: {
+    fontFamily: 'PTSansCaption',
     fontSize: 16,
     color: '#000',
     paddingBottom: 5

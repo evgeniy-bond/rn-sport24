@@ -6,7 +6,7 @@ export default class Page extends Component {
     const { title, children } = this.props;
     
     return (
-      <View style={{ padding: 20 }}>
+      <View style={{ paddingTop: 20, paddingBottom: 20 }}>
         <Text style={{ fontSize: 24, textAlign: 'center' }}>{title}</Text>
         {children}
       </View>

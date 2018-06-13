@@ -12,11 +12,11 @@ export default class NewsItem extends Component {
     const { title, sport, publishDate } = this.props;
 
     return (
-      <View style={{...s.item}}>
-        <Text style={{...s.header}}>{title}</Text>
-        <View style={{...s.container}}>
-          <Text style={{...s.subTitle}}>{sport.title}</Text>
-          <Text style={{ ...s.time }}>{this.getDate(publishDate)}</Text>
+      <View style={s.item}>
+        <Text style={s.header}>{title}</Text>
+        <View style={s.container}>
+          <Text style={s.subTitle}>{sport.title}</Text>
+          <Text style={s.time}>{this.getDate(publishDate)}</Text>
         </View>
       </View>
     );

@@ -3,10 +3,10 @@ export default {
     paddingTop: 15
   },
   header: {
+    fontFamily: 'PTSansCaptionBold',
     fontSize: 18,
     color: '#000',
     paddingBottom: 5,
-    fontWeight: 'bold'
   },
   container: {
     flexDirection: 'row',
