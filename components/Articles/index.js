@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, Image } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import ArticleItem from '../ArticleItem';
-import { Button } from 'react-native';
+import { Button, ActivityIndicator } from 'react-native';
+import s from './styles.js';
 
 export default class Articles extends Component {
   render() {
     const { isLoading, getArticles } = this.props;
 
     return (
-      <ScrollView style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20, marginBottom: 20 }}>
+      <ScrollView style={s.container}>
         {this.props.articles.map((el, i) => <ArticleItem key={i} {...el} />)}
-        <Button
-          title="Загрузить еще"
-          onPress={getArticles}
-          style={{height: 40}}
-        />
+        <View style={s.container__btns}>
+          {isLoading
+            ? <ActivityIndicator size="large" color="#5050b4" />
+            : <Button
+              title="Загрузить еще"
+              onPress={getArticles}
+              color="#5050b4"
+            />
+          }
+        </View>
       </ScrollView>
     );
   }
