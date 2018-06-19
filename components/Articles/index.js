@@ -7,7 +7,7 @@ import { withNavigation } from 'react-navigation';
 
 class Articles extends Component {
   navigate = urn => {
-    this.props.navigation.navigate('ArticleScreen')
+    this.props.navigation.navigate('ArticleScreen', {urn: urn})
   }
 
   render() {

@@ -1,7 +1,5 @@
 export default {
-  container: {
-    paddingTop: 20
-  },
+  container: {},
   text: { 
     fontSize: 24, 
     textAlign: 'center', 
