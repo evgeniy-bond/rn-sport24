@@ -12,7 +12,7 @@ export default class ArticlesScreen extends Component {
 
   render() {
     return (
-      <Page>
+      <Page title="Статьи">
         <ArticlesContainer/>
       </Page>
     )

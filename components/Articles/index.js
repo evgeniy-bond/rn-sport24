@@ -3,14 +3,18 @@ import { ScrollView, View } from 'react-native';
 import ArticleItem from '../ArticleItem';
 import { Button, ActivityIndicator } from 'react-native';
 import s from './styles.js';
+import { withNavigation } from 'react-navigation';
 
-export default class Articles extends Component {
+class Articles extends Component {
+  navigate = urn => {
+    this.props.navigation.navigate('ArticleScreen')
+  }
+
   render() {
-    const { isLoading, getArticles } = this.props;
-
+    const { isLoading, getArticles, articles } = this.props;
     return (
       <ScrollView style={s.container}>
-        {this.props.articles.map((el, i) => <ArticleItem key={i} {...el} />)}
+        {articles.map((el, i) => <ArticleItem key={i} {...el} navigate={() => this.navigate(el.urn)}/>)}
         <View style={s.container__btns}>
           {isLoading
             ? <ActivityIndicator size="large" color="#5050b4" />
@@ -25,3 +29,5 @@ export default class Articles extends Component {
     );
   }
 }
+
+export default withNavigation(Articles)

@@ -8,7 +8,7 @@ export default class Page extends Component {
     
     return (
       <View style={s.container}>
-        <Text style={s.text}>{title}</Text>
+        {title && <Text style={s.text}>{title}</Text>}
         {children}
       </View>
     );
