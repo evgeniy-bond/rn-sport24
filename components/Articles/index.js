@@ -6,15 +6,15 @@ import s from './styles.js';
 import { withNavigation } from 'react-navigation';
 
 class Articles extends Component {
-  navigate = urn => {
-    this.props.navigation.navigate('ArticleScreen', {urn: urn})
+  navigate = (urn, sportUrn) => {
+    this.props.navigation.navigate('ArticleScreen', {urn, sportUrn})
   }
 
   render() {
     const { isLoading, getArticles, articles } = this.props;
     return (
       <ScrollView style={s.container}>
-        {articles.map((el, i) => <ArticleItem key={i} {...el} navigate={() => this.navigate(el.urn)}/>)}
+        {articles.map((el, i) => <ArticleItem key={i} {...el} navigate={() => this.navigate(el.urn, el.sport.urn)}/>)}
         <View style={s.container__btns}>
           {isLoading
             ? <ActivityIndicator size="large" color="#5050b4" />

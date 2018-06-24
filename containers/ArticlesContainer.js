@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Articles from '../components/Articles';
 import { connect } from 'react-redux'
-import { getArticles } from '../actions';
+import { getArticles } from '../actions/articlesActions';
 
 class ArticlesContainer extends Component {
   componentDidMount() {

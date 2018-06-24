@@ -1,3 +1,6 @@
+import React from 'react';
+import { View, Text, Image, WebView } from 'react-native';
+
 export default function parseContentJson(element, key = Math.random()) {
   const tag = element[0];
   const children = element[1] || [];
@@ -5,80 +8,80 @@ export default function parseContentJson(element, key = Math.random()) {
 
   let tags = {
     'img': () => {
-      let {src, title, ...other} = props;
+      let {title} = props;
 
       if (title && title.substr(0, 1) === '(' && title.substr(-1) === ')') {
         title = title.substr(1, title.length - 2);
       }
     },
     'h2': () => (
-      <h2 key={key} {...props}>
+      <Text key={key} style={{fontSize: 18}}>
         {children.map(parseContentJson)}
-      </h2>
+      </Text>
     ),
     'h3': () => (
-      <h3 key={key} {...props}>
+      <Text key={key} style={{ fontSize: 16 }}>
         {children.map(parseContentJson)}
-      </h3>
+      </Text>
     ),
     'p': () => {
       if (props.class === 'infographics') {
         return (
-          <div key={key}>
+          <View key={key}>
             {children.map(parseContentJson)}
-          </div>
+          </View>
         );
       }
 
       if (props.class === 'image') {
         return (
-          <p key={key} className={`media media--image ${children[0] && children[0][2] && children[0][2]['alt'] && 'media--with-signature'}`}>
+          <View key={key}>
             {children.map(parseContentJson)}
-          </p>
+          </View>
         );
       }
 
       if (children[0] && children[0][0] && ['instagram', 'twitter', 'youtube', 'test', 'timeline', 'storymap'].indexOf(children[0][0]) !== -1) {
         return (
-          <div key={key}>
+          <View key={key}>
             {children.map(parseContentJson)}
-          </div>
+          </View>
         );
       }
 
       return (
-        <p key={key}>
+        <Text key={key} style={{fontSize: 12}}>
           {children.map(parseContentJson)}
-        </p>
+        </Text>
       );
     },
     'br': () => (
-      <br key={key}/>
+      '\n'
     ),
     'footer': () => (
-      <div key={key} className="blockquote-footer">
+      <View key={key}>
         {children.map(parseContentJson)}
-      </div>
+      </View>
     ),
     'h4': () => (
-      <h4 key={key}>
+      <Text key={key} style={{ fontSize: 14 }}>
         {children.map(parseContentJson)}
-      </h4>
+      </Text>
     ),
     'h6': () => (
-      <h6 key={key}>
+      <Text key={key} style={{ fontSize: 12 }}>
         {children.map(parseContentJson)}
-      </h6>
+      </Text>
     ),
     'a': () => (
-      <a key={key} {...props} className="a--underline">
+      <Text key={key} style={{ textDecorationLine: 'underline'}}>
         {children.map(parseContentJson)}
-      </a>
+      </Text>
     ),
     'span': () => (
-      <span key={key} {...props} className="media__signature">
+      <Text key={key} >
         {children.map(parseContentJson)}
-      </span>
+      </Text>
     ),
     // 'blockquote': () => (
     //   <Blockquote key={key}>
@@ -86,9 +89,9 @@ export default function parseContentJson(element, key = Math.random()) {
     //   </Blockquote>
     // ),
     'twin': () => (
-      <div key={key}>
+      <View key={key}>
         {children.map(parseContentJson)}
-      </div>
+      </View>
     ),
     // 'youtube': () => (
     //   <Youtube key={key} url={props.url}/>
@@ -122,32 +125,32 @@ export default function parseContentJson(element, key = Math.random()) {
     //   );
     // },
     'ol': () => (
-      <ul key={key} {...props}>
+      <View key={key}>
         {children.map(parseContentJson)}
-      </ul>
+      </View>
     ),
     'ul': () => (
-      <ul key={key} {...props}>
+      <View key={key}>
         {children.map(parseContentJson)}
-      </ul>
+      </View>
     ),
     'li': () => (
-      <li key={key} {...props}>
+      <View key={key}>
         {children.map(parseContentJson)}
-      </li>
+      </View>
     ),
     // 'gallery': () => (
     //   <Gallery key={key} images={children}/>
     // ),
     'strong': () => (
-      <strong key={key} {...props}>
+      <Text key={key} style={{fontWeight: 'bold'}}>
         {children.map(parseContentJson)}
-      </strong>
+      </Text>
     ),
     'i': () => (
-      <i key={key} {...props}>
+      <Text key={key}>
         {children.map(parseContentJson)}
-      </i>
+      </Text>
     ),
     // 'banner': () => (
     //   <Banner key={key} content={props} position={props.position} className="banner__article"/>
@@ -157,5 +160,5 @@ export default function parseContentJson(element, key = Math.random()) {
     // ),
   };
 
-  return tags[tag] ? tags[tag]() : <span key={key} dangerouslySetInnerHTML={{__html: tag}}/>;
+  return tags[tag] ? tags[tag]() : <WebView key={key} source={{html: tag}}/>;
 }

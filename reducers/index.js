@@ -1,4 +1,5 @@
-import { REQUEST_ARTICLES, RECEIVE_ARTICLES, RECEIVE_ARTICLES_FAILURE } from '../actions/actionTypes';
+import { REQUEST_ARTICLES, RECEIVE_ARTICLES, RECEIVE_ARTICLES_FAILURE } from '../actions/articlesActionTypes';
+import article from './article';
 import { combineReducers } from 'redux'
 
 const initialState = {
@@ -35,5 +36,6 @@ const articles = (state = initialState, action) => {
 }
 
 export default combineReducers({
-  articles
+  articles,
+  article
 });

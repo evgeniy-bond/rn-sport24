@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
 import NavigationIcon from '../components/NavigationIcon';
 import Page from '../components/Page';
 import ArticlesContainer from '../containers/ArticlesContainer';
